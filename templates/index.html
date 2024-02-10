@@ -1,0 +1,13 @@
+{% include "header.html" %}
+
+
+
+<form id="taskForm" action="{{ url_for('add_task') }}" class="form-group" method="post">
+  <textarea class="form-control mt-2 fs-4" rows="2" id="comment" placeholder="Write your task here..."
+    name="task"></textarea>
+</form>
+
+
+
+{% include "list.html" %}
+{% include "footer.html" %}
