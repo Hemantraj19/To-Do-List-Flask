@@ -17,27 +17,11 @@
     </li>
     <hr style="position: absolute; left: 0; width: 100%;">
 </ul> -->
-
-<style>
-    .color-picker {
-        position: absolute;
-        top: 50%;
-        right: 4.5rem;
-        transform: translateY(-50%);
-        display: none;
-    }
-
-    .color-picker-input {
-        border: 0;
-    }
-</style>
-
 <ul style="list-style-type: none; margin: 0; padding-left: 40px;">
     <li class="mt-4" style="position: relative;" onmouseover="showColorPicker(this)" onmouseout="hideColorPicker(this)">
         <form>
             <div class="form-check">
-                <button class="btn btn-sm delete-btn fs-4"
-                    style="display: none; position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">❌</button>
+                <button class="btn btn-sm delete-btn fs-4">❌</button>
                 <div class="color-picker">
                     <input type="color" id="colorPicker" class="color-picker-input">
                 </div>
@@ -46,9 +30,8 @@
                 <label class="form-check-label fs-4" for="flexCheckDefault">
                     Default checkbox
                 </label>
-                <input type="text"
-                    style="border-radius: 12px; margin-left: 2rem; font-size: 0.8rem; border: 0cap; background-color: #E7E7E7"
-                    size="8" placeholder="No due date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                <input type="text" , class="date-input" size="8" placeholder="No due date" onfocus="(this.type='date')"
+                    onblur="(this.type='text')">
             </div>
         </form>
     </li>
