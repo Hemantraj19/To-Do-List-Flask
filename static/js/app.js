@@ -5,7 +5,34 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("taskForm").submit();
         }
     });
+
+    // Add event listener to all color picker input elements
+    var colorPickers = document.querySelectorAll('input[type="color"]')
+    colorPickers.forEach(function (colorPicker) {
+        colorPicker.addEventListener('input', function (event) {
+            console.log("Color picked:", this.value); // Debugging statement
+            // When the color is picked, automatically submit the form
+            this.form.submit();
+        });
+    });
+
+    var checkboxClicked = document.querySelectorAll('input[type="checkbox"]')
+    checkboxClicked.forEach(function (checkbox) {
+        checkbox.addEventListener('input', function (event) {
+            this.form.submit()
+        });
+
+    });
+
+    var datePickers = document.querySelectorAll('input[type="text"]')
+    datePickers.forEach(function (datePicker) {
+        datePicker.addEventListener('input', function (event) {
+            this.form.submit()
+        });
+    });
 });
+
+
 
 
 function showColorPicker(element) {
@@ -18,12 +45,7 @@ function hideColorPicker(element) {
     element.querySelector('.color-picker').style.display = 'none';
 }
 
-const colorPickerInput = document.querySelector('.color-picker-input');
-const checkbox = document.getElementById('flexCheckDefault');
-const textInput = document.querySelector('input[type="text"]');
-
-colorPickerInput.addEventListener('input', function () {
-    const color = this.value;
-    checkbox.style.backgroundColor = color;
-    textInput.style.backgroundColor = color;
-});
+// document.getElementById('colorPicker').addEventListener('input', function (event) {
+//     // When the color is picked, automatically submit the form
+//     this.form.submit();
+// });

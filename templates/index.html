@@ -1,13 +1,43 @@
 {% include "header.html" %}
 
-
-
 <form id="taskForm" action="{{ url_for('add_task') }}" class="form-group" method="post">
   <textarea class="form-control mt-2 fs-4" rows="2" id="comment" placeholder="Write your task here..."
     name="task"></textarea>
 </form>
 
 
+<ul style="list-style-type: none; margin: 0; padding-left: 40px;">
+  {% for list in todo_list %}
+  <li class="mt-4" style="position: relative;" onmouseover="showColorPicker(this)" onmouseout="hideColorPicker(this)">
+    <div class="form-check">
+      <a href="{{url_for('delete', todo_id=list.id)}}"><button class="btn btn-sm delete-btn fs-4">❌</button></a>
+      <div class="color-picker">
+        <form method="post" action="{{ url_for('pick_color', todo_id=list.id)}}">
+          <input type="color" id="colorPicker-{{ list.id }}" class="color-picker-input" name="picked-color">
+        </form>
+      </div>
+      <form method="get" action="{{url_for('checkbox', todo_id=list.id)}}">
+        <input class="form-check-input fs-4" type="checkbox" {% if list.task_done %} checked {% endif %}
+          id="flexCheckDefault" style="background-color: {{list.color}}">
+      </form>
+      <label class="form-check-label fs-4" style="{% if list.task_done %} text-decoration:line-through{% endif %}"
+        for="flexCheckDefault">
+        {{ list.task }}
+      </label>
+      <div style="display: inline-block;">
+        <form method="post" action="{{url_for('date_picked', todo_id=list.id)}}">
+          <input type="text" name="date-pick" class="date-input" size="8" placeholder="No due date"
+            onfocus="(this.type='date')" onblur="(this.type='text')" value="{% if list.date: %} {{list.date}} {%endif%}"
+            style="color: white; background-color: {{list.color}}">
+          <!-- {%if list.date %}
+          <label>Due in 3 days</label>
+          {% endif %} -->
+        </form>
+      </div>
+    </div>
+  </li>
+  <hr style="position: absolute; left: 0; width: 100%;">
+  {% endfor %}
+</ul>
 
-{% include "list.html" %}
 {% include "footer.html" %}
